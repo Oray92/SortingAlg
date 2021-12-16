@@ -10,6 +10,7 @@ namespace Alphanumerische_Zahl
     class Program
     {
         private static Random random = new Random();
+        static string artem; // momentan ist null 
 
         public static void Main(string[] args)
         {
@@ -36,16 +37,17 @@ namespace Alphanumerische_Zahl
                         .Select(s => s[random.Next(s.Length)]).ToArray());
                 }
 
-
+                artem = GenerateChar(nodeCount);
 
                 for (int i = 0; i < nodeCount; i++)
                 {
-                    dllListe.Add(GenerateChar(stringCount));
+                   dllListe.Add(GenerateChar(stringCount));
                 }
 
 
+
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Unsorted list: \n" + dllListe + " length: " + dllListe.GetLength());
+                Console.WriteLine("Unsorted list: \n" + dllListe.toString(node.Data) + " length: " + dllListe.GetLength());
                 Console.ResetColor();
                 Console.WriteLine("\n1 Quick, 2 Bubble, 3 Merge, 4 Select \n");
                 string userInput = Console.ReadLine();
@@ -56,7 +58,7 @@ namespace Alphanumerische_Zahl
                 switch (userInput)
                 {
                     case "1":
-                        Console.WriteLine("QuickSort chosen, sorted list: \n" + dllListe.toString(quick.Data));
+                        Console.WriteLine("QuickSort chosen, sorted list: \n" + dllListe.toString(Quick_Sort.Quicksort(dllListe, 0, 9)));
                         break;
                     case "2":
                         Console.WriteLine("BubbleSort chosen, sorted list: \n" + dllListe.toString(bubble.Data));

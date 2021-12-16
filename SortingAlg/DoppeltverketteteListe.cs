@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Alphanumerische_Zahlen
 {
-    public class DoppeltverketteteListe
+   public class DoppeltverketteteListe
     {
 
         private Node startNode = null;
@@ -23,11 +23,13 @@ namespace Alphanumerische_Zahlen
                 Node currentNode = startNode;
                 while (currentNode.Next != null)
                 {
-                    currentNode = currentNode.Next;
+                    currentNode = currentNode.Next;                    
                 }
                 currentNode.Next = newNode;
             }
+            //return newNode;
         }
+
 
 
         public bool Remove(Node node)
@@ -52,7 +54,7 @@ namespace Alphanumerische_Zahlen
                     {
                         startNode = null;
                         return true;    //wurde gelöscht
-                    }
+                    }                    
                 }
 
                 while (currentNode.Next != null)
@@ -128,7 +130,7 @@ namespace Alphanumerische_Zahlen
 
         public Node GetNode(int i)
         {// wenn der Parameter höher ist als die Länge der Liste, gib null zurück
-            if (GetLength() - 1 < i)
+            if (GetLength()  - 1 < i)
             {
                 throw new IndexOutOfRangeException();
             }
@@ -174,7 +176,7 @@ namespace Alphanumerische_Zahlen
             }
         }
 
-        public string toString(string Type)
+        public string toString(string type)
         {
             string returnString = "";
             if (startNode == null)
@@ -185,7 +187,7 @@ namespace Alphanumerische_Zahlen
             {
                 Node currentNode = startNode;
                 returnString += currentNode.Data;
-
+                
                 int count = 1;
                 while (currentNode.Next != null)
                 {

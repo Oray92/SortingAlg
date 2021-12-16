@@ -11,28 +11,26 @@ namespace Alphanumerische_Zahlen
     {
         //propertie
         public string Data { get; set; }
-        public static void BubbleSort(DoppeltverketteteListe liste)
+        public static void BubbleSort(DoppeltverketteteListe currentNode, string dllListe)
         {
 
             bool swap;
             string temp;
-            int n = liste.GetLength();
-            do
-            {
-                swap = false;
+            int n = currentNode.GetLength();
+            //    do
+            //    {
+            //        swap = false;
 
-                for (int i = 0; i < n - 1; i++)
+            //        for (int i = 0; i < n - 1; i++)
 
-                    if (string.Compare((currentNode), (currentNode + 1)) < 0)
-                    {
-                        //swap
-                        temp = n.CompareTo[currentNode];
-                        letters[currentNode] = letters[currentNode + 1];
-                        letters[currentNode + 1] = temp;
-                        swap = true;
-                    }
-                n--;
-            } while (swap && n > 0);
+            //    //        if (string.Compare()
+            //    //        {
+            //    //            //swap
+            //    //            temp =  = temp;
+            //    //            swap = true;
+            //    //        }
+            //    //    n--;
+            //    //} while (swap && n > 0);
         }
     }
 }

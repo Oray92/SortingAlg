@@ -9,7 +9,7 @@ namespace Alphanumerische_Zahlen
     {
 
         public string Data { get; set; }
-        public static void Quicksort(DoppeltverketteteListe a, int start, int end)
+        public static String Quicksort(DoppeltverketteteListe a, int start, int end)
         {
             //Index for the "left to right scan"
             int i = start;
@@ -29,9 +29,9 @@ namespace Alphanumerische_Zahlen
                     a.GetNode(start).Data = a.GetNode(end).Data;
                     a.GetNode(end).Data = temp;
                 }
-
+                return pivot.Data;
             } while (start <= end);
-
+            
             //Swap(a, start, end);            
         }
         private static void Swap(DoppeltverketteteListe a, int start, int end)
