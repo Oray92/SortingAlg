@@ -10,7 +10,7 @@ namespace Alphanumerische_Zahlen
 
         private Node startNode = null;
 
-        public void Add(string payload)
+        public void Add(char payload)
         {//set the first node
             Node newNode = new Node();
             newNode.Data = payload;
@@ -130,7 +130,7 @@ namespace Alphanumerische_Zahlen
 
         public Node GetNode(int i)
         {// wenn der Parameter höher ist als die Länge der Liste, gib null zurück
-            if (GetLength()  - 1 < i)
+            if (GetLength()  <= i)
             {
                 throw new IndexOutOfRangeException();
             }
@@ -141,7 +141,7 @@ namespace Alphanumerische_Zahlen
             //die schleife läuft solange nextNode nicht null ist
             while (currentNode.Next != null)
             {// ist der count gleich mit unserem Parameter "i"?
-                if (count == 1)
+                if (count == i)
                 {// wenn der parameter dem count gleicht, gib currentNode zurück
                     return currentNode;
                 }
@@ -176,7 +176,7 @@ namespace Alphanumerische_Zahlen
             }
         }
 
-        public string toString(string type)
+        public string toString()
         {
             string returnString = "";
             if (startNode == null)

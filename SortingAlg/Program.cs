@@ -10,7 +10,6 @@ namespace Alphanumerische_Zahl
     class Program
     {
         private static Random random = new Random();
-        static string artem; // momentan ist null 
 
         public static void Main(string[] args)
         {
@@ -30,14 +29,14 @@ namespace Alphanumerische_Zahl
                 Node node = new Node();
 
                 //Generiert einen zufälligen char
-                static string GenerateChar(int charCount)
+                static char GenerateChar(int charCount)
                 {
                     const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-                    return new string(Enumerable.Repeat(chars, charCount)
-                        .Select(s => s[random.Next(s.Length)]).ToArray());
+                    return Convert.ToChar(new string(Enumerable.Repeat(chars, charCount)
+                        .Select(s => s[random.Next(s.Length)]).ToArray()));
                 }
 
-                artem = GenerateChar(nodeCount);
+       
 
                 for (int i = 0; i < nodeCount; i++)
                 {
@@ -47,10 +46,11 @@ namespace Alphanumerische_Zahl
 
 
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Unsorted list: \n" + dllListe.toString(node.Data) + " length: " + dllListe.GetLength());
+                Console.WriteLine("Unsorted list: \n" + dllListe.toString() + " length: " + dllListe.GetLength());
                 Console.ResetColor();
                 Console.WriteLine("\n1 Quick, 2 Bubble, 3 Merge, 4 Select \n");
                 string userInput = Console.ReadLine();
+
 
 
 
@@ -58,16 +58,20 @@ namespace Alphanumerische_Zahl
                 switch (userInput)
                 {
                     case "1":
-                        Console.WriteLine("QuickSort chosen, sorted list: \n" + dllListe.toString(Quick_Sort.Quicksort(dllListe, 0, 9)));
+                        Quick_Sort.QuickSort(dllListe, 0, dllListe.GetLength() - 1);
+                        Console.WriteLine("QuickSort chosen, sorted list: \n" + dllListe.toString());
                         break;
                     case "2":
-                        Console.WriteLine("BubbleSort chosen, sorted list: \n" + dllListe.toString(bubble.Data));
+                        Bubble_Sort.BubbleSort(dllListe);
+                        Console.WriteLine("BubbleSort chosen, sorted list: \n" + dllListe.toString());
                         break;
                     case "3":
-                        Console.WriteLine("MergeSort chosen, sorted list: \n" + dllListe.toString(merge.Data));
+                        Merge_Sort.sort(dllListe, 0, dllListe.GetLength() - 1);
+                        Console.WriteLine("MergeSort chosen, sorted list: \n" + dllListe.toString());
                         break;
                     case "4":
-                        Console.WriteLine("SelectSort chosen, sorted list. \n" + dllListe.toString(select.Data));
+                        Select_Sort.SelectSort(dllListe);
+                        Console.WriteLine("SelectSort chosen, sorted list. \n" + dllListe.toString());
                         break;
 
                     default:

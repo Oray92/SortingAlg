@@ -1,46 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
 
 namespace Alphanumerische_Zahlen
 {
     public class Quick_Sort
     {
-
-        public string Data { get; set; }
-        public static String Quicksort(DoppeltverketteteListe a, int start, int end)
+        public static void QuickSort(DoppeltverketteteListe arr, int start, int end)
         {
-            //Index for the "left to right scan"
-            int i = start;
-            //Index for the "right to left scan"
-            int j = end;
-            //Only examine arrays of 2 or more elements.
-            do /*(end - start >= 1)*/
+            int i;
+            if (start < end)
             {
-                Node pivot = a.GetNode(start);
+                i = Partition(arr, start, end);
 
-                while ((a.GetNode(start).CompareTo(pivot) < 0) && (start < end)) start++;
-                while ((a.GetNode(start).CompareTo(pivot) > 0) && end > start && end >= start) end--;
-
-                if (start <= end)
-                {
-                    string temp = a.GetNode(start).Data;
-                    a.GetNode(start).Data = a.GetNode(end).Data;
-                    a.GetNode(end).Data = temp;
-                }
-                return pivot.Data;
-            } while (start <= end);
-            
-            //Swap(a, start, end);            
+                QuickSort(arr, start, i - 1);
+                QuickSort(arr, i + 1, end);
+            }
         }
-        private static void Swap(DoppeltverketteteListe a, int start, int end)
+
+        private static int Partition(DoppeltverketteteListe arr, int start, int end)
         {
-            //Swap the pivot point with the last element of the left partition
-            Swap(a, start, end);
-            //Sort left partition
-            Quicksort(a, start, end - 1);
-            Quicksort(a, end + 1, end);
+            char temp;
+            char lastString = arr.GetNode(end).Data;
+           
+            int i = start - 1;
+
+            for (int j = start; j <= end - 1; j++)
+            {
+                char jString = arr.GetNode(j).Data;
+                if (char.ToUpper(lastString) - 64 >= char.ToUpper(jString) - 64)
+                {
+                    i++;
+                    temp = arr.GetNode(i).Data;
+                    arr.GetNode(i).Data = arr.GetNode(j).Data;
+                    arr.GetNode(j).Data = temp;
+                }
+            }
+
+            temp = arr.GetNode(i + 1).Data;
+            arr.GetNode(i + 1).Data = arr.GetNode(end).Data;
+            arr.GetNode(end).Data = temp;
+
+            return i + 1;
         }
+
+
     }
 }

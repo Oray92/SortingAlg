@@ -1,46 +1,89 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Alphanumerische_Zahlen
+﻿namespace Alphanumerische_Zahlen
 {
     public class Merge_Sort
     {
-        public string Data { get; set; }
-        public static void MergeSort(DoppeltverketteteListe dllListe, int left, int mid, int right)
+        private static void MergeSort(DoppeltverketteteListe dllListe, int left, int mid, int right)
         {
-            string[] temp = new string[10];
-            int i, left_end, dllListe_elements, tmp_pos;
-            left_end = (mid - 1);
-            tmp_pos = left;
-            dllListe_elements = (right - left + 1);
-            while ((left <= left_end) && (mid <= right))
+
+
+            // Find sizes of two
+            // subarrays to be merged
+            int n1 = mid - left + 1;
+            int n2 = right - mid;
+
+            // Create temp arrays
+            char[] L = new char[n1];
+            char[] R = new char[n2];
+            int i, j;
+
+            // Copy data to temp arrays
+            for (i = 0; i < n1; ++i)
+                L[i] = dllListe.GetNode(left + i).Data;
+            for (j = 0; j < n2; ++j)
+                R[j] = dllListe.GetNode(mid + 1 + j).Data;
+
+            // Merge the temp arrays
+
+            // Initial indexes of first
+            // and second subarrays
+            i = 0;
+            j = 0;
+
+            // Initial index of merged
+            // subarray array
+            int k = left;
+            while (i < n1 && j < n2)
             {
-                if ((char)(left) <= (char)(mid))
-                    temp[tmp_pos++] = char.ConvertFromUtf32(left++);
+                if (L[i] <= R[j])
+                {
+                    dllListe.GetNode(k).Data = L[i];
+                    i++;
+                }
                 else
-                    temp[tmp_pos++] = char.ConvertFromUtf32(mid++);
+                {
+                    dllListe.GetNode(k).Data = R[j];
+                    j++;
+                }
+                k++;
             }
-            while (left <= left_end)
-                temp[tmp_pos++] = char.ConvertFromUtf32(left++);
-            while (mid <= right)
-                temp[tmp_pos++] = char.ConvertFromUtf32(mid++);
-            for (i = 0; i < dllListe_elements; i++)
+
+            // Copy remaining elements
+            // of L[] if any
+            while (i < n1)
             {
-                dllListe.GetNode(right).Data = temp[right];
-                right--;
+                dllListe.GetNode(k).Data = L[i];
+                i++;
+                k++;
+            }
+
+            // Copy remaining elements
+            // of R[] if any
+            while (j < n2)
+            {
+                dllListe.GetNode(k).Data = R[j];
+                j++;
+                k++;
             }
         }
-        public static void SortMethod(DoppeltverketteteListe dllListe, int left, int right)
+
+        // Main function that
+        // sorts arr[l..r] using
+        // merge()
+        public static void sort(DoppeltverketteteListe dllListe, int start, int ende)
         {
-            int mid;
-            if (right > left)
+            if (start < ende)
             {
-                mid = (right + left) / 2;
-                SortMethod(dllListe, left, mid);
-                SortMethod(dllListe, (mid + 1), right);
-                MergeSort(dllListe, left, (mid + 1), right);
+                // Find the middle
+                // point
+                int m = start + (ende - start) / 2;
+
+                // Sort first and
+                // second halves
+                sort(dllListe, start, m);
+                sort(dllListe, m + 1, ende);
+
+                // Merge the sorted halves
+                MergeSort(dllListe, start, m, ende);
             }
         }
     }

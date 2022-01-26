@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Alphanumerische_Zahlen
 {
@@ -12,25 +10,22 @@ namespace Alphanumerische_Zahlen
         {
             int n = dllListe.GetLength();
 
-            for (int i = 0; i < n; i++)
+            // One by one move boundary of unsorted subarray
+            for (int i = 0; i < n - 1; i++)
             {
-                int temp, smallest;
-                smallest = i;
-                string minStr = dllListe.GetLength().ToString();
+                // Find the minimum element in unsorted array
+                int min_idx = i;
                 for (int j = i + 1; j < n; j++)
-                {
-                    if (n.CompareTo(minStr) != 0)
-                    {
+                    if (char.ToUpper(dllListe.GetNode(j).Data) - 64 < char.ToUpper(dllListe.GetNode(min_idx).Data) - 64)
+                        min_idx = j;
 
-                        smallest = j;
-
-                        // swapping the min. element, found with the first element.
-                        temp = n.CompareTo(smallest);
-                        Convert.ToString((smallest) = n.CompareTo(i));
-                        Convert.ToString((i) = temp);
-                    }
-                }
+                // Swap the found minimum element with the first
+                // element
+                Char temp = dllListe.GetNode(min_idx).Data;
+                dllListe.GetNode(min_idx).Data = dllListe.GetNode(i).Data;
+                dllListe.GetNode(i).Data = temp;
             }
         }
     }
 }
+

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
 
 
 
@@ -11,26 +8,23 @@ namespace Alphanumerische_Zahlen
     {
         //propertie
         public string Data { get; set; }
-        public static void BubbleSort(DoppeltverketteteListe currentNode, string dllListe)
+
+        public static void BubbleSort(DoppeltverketteteListe a)
         {
 
-            bool swap;
-            string temp;
-            int n = currentNode.GetLength();
-            //    do
-            //    {
-            //        swap = false;
+            for (int i = 1; i <= a.GetLength() - 1; ++i)
 
-            //        for (int i = 0; i < n - 1; i++)
-
-            //    //        if (string.Compare()
-            //    //        {
-            //    //            //swap
-            //    //            temp =  = temp;
-            //    //            swap = true;
-            //    //        }
-            //    //    n--;
-            //    //} while (swap && n > 0);
+                for (int j = 0; j < a.GetLength() - i; ++j)
+                    if (char.ToUpper(a.GetNode(j).Data) - 64 > char.ToUpper(a.GetNode(j + 1).Data) - 64)
+                        Swap(a.GetNode(j), a.GetNode(j + 1));
         }
+
+        public static void Swap(Node x, Node y)
+        {
+            Char temp = x.Data;
+            x.Data = y.Data;
+            y.Data = temp;
+        }
+
     }
 }
